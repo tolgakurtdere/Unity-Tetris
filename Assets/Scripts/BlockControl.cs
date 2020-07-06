@@ -51,6 +51,7 @@ public class BlockControl : MonoBehaviour
             fallTime = 0;
         }
         scoreUpCheck();
+        levelCheck();
         gameOver();
     }
 
@@ -133,6 +134,21 @@ public class BlockControl : MonoBehaviour
         if (Background.gameArea[19,5] != null) //if the SpawnPoint is not null
         {
             isOver = true;
+        }
+    }
+
+    void levelCheck()
+    {
+        if (GameControl.score >= 5 && GameControl.score < 25) GameControl.level = 2;
+        if (GameControl.score >= 25) GameControl.level = 3;
+
+        if (GameControl.level == 2)
+        {
+            fallTimeControl = 0.15f;
+        }
+        else if(GameControl.level == 3)
+        {
+            fallTimeControl = 0.1f;
         }
     }
 }
